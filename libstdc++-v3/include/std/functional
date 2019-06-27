@@ -83,6 +83,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 #endif
 
+#if __cplusplus > 201703L
+# define __cpp_lib_constexpr_misc 201811
+#endif
+
   template<typename _MemFunPtr,
 	   bool __is_mem_fn = is_member_function_pointer<_MemFunPtr>::value>
     class _Mem_fn_base
@@ -974,6 +978,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     class default_searcher
     {
     public:
+      _GLIBCXX20_CONSTEXPR
       default_searcher(_ForwardIterator1 __pat_first,
 		       _ForwardIterator1 __pat_last,
 		       _BinaryPredicate __pred = _BinaryPredicate())
@@ -981,7 +986,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       { }
 
       template<typename _ForwardIterator2>
-        pair<_ForwardIterator2, _ForwardIterator2>
+	_GLIBCXX20_CONSTEXPR
+	pair<_ForwardIterator2, _ForwardIterator2>
 	operator()(_ForwardIterator2 __first, _ForwardIterator2 __last) const
 	{
 	  _ForwardIterator2 __first_ret =
