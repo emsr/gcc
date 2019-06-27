@@ -472,6 +472,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   template<typename _CharT, typename _Traits, typename _Alloc>
+    _GLIBCXX20_CONSTEXPR
     typename basic_string<_CharT, _Traits, _Alloc>::size_type
     basic_string<_CharT, _Traits, _Alloc>::
     copy(_CharT* __s, size_type __n, size_type __pos) const
@@ -1140,7 +1141,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return *this;
     }
 
-    template<typename _CharT, typename _Traits, typename _Alloc>
+  template<typename _CharT, typename _Traits, typename _Alloc>
+    _GLIBCXX20_CONSTEXPR
     typename basic_string<_CharT, _Traits, _Alloc>::size_type
     basic_string<_CharT, _Traits, _Alloc>::
     copy(_CharT* __s, size_type __n, size_type __pos) const
