@@ -342,7 +342,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CXX11
 
       // When __n = 1 way faster than the general multichar
       // traits_type::copy/move/assign.
-      static void
+      static _GLIBCXX20_CONSTEXPR void
       _S_copy(_CharT* __d, const _CharT* __s, size_type __n)
       {
 	if (__n == 1)
@@ -388,11 +388,11 @@ _GLIBCXX_BEGIN_NAMESPACE_CXX11
       _GLIBCXX_NOEXCEPT
       { _S_copy_chars(__p, __k1.base(), __k2.base()); }
 
-      static void
+      static _GLIBCXX20_CONSTEXPR void
       _S_copy_chars(_CharT* __p, _CharT* __k1, _CharT* __k2) _GLIBCXX_NOEXCEPT
       { _S_copy(__p, __k1, __k2 - __k1); }
 
-      static void
+      static _GLIBCXX20_CONSTEXPR void
       _S_copy_chars(_CharT* __p, const _CharT* __k1, const _CharT* __k2)
       _GLIBCXX_NOEXCEPT
       { _S_copy(__p, __k1, __k2 - __k1); }
@@ -2275,7 +2275,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CXX11
        *  C string @a __s.  If @a __pos is %greater than size(),
        *  out_of_range is thrown.
       */
-      size_type
+      _GLIBCXX20_CONSTEXPR size_type
       copy(_CharT* __s, size_type __n, size_type __pos = 0) const;
 
       /**
@@ -3417,7 +3417,7 @@ _GLIBCXX_END_NAMESPACE_CXX11
 
       // When __n = 1 way faster than the general multichar
       // traits_type::copy/move/assign.
-      static void
+      static _GLIBCXX20_CONSTEXPR void
       _M_copy(_CharT* __d, const _CharT* __s, size_type __n) _GLIBCXX_NOEXCEPT
       {
 	if (__n == 1)
@@ -3426,7 +3426,7 @@ _GLIBCXX_END_NAMESPACE_CXX11
 	  traits_type::copy(__d, __s, __n);
       }
 
-      static void
+      static _GLIBCXX20_CONSTEXPR void
       _M_move(_CharT* __d, const _CharT* __s, size_type __n) _GLIBCXX_NOEXCEPT
       {
 	if (__n == 1)
@@ -3435,7 +3435,7 @@ _GLIBCXX_END_NAMESPACE_CXX11
 	  traits_type::move(__d, __s, __n);	  
       }
 
-      static void
+      static _GLIBCXX20_CONSTEXPR void
       _M_assign(_CharT* __d, size_type __n, _CharT __c) _GLIBCXX_NOEXCEPT
       {
 	if (__n == 1)
@@ -3447,27 +3447,27 @@ _GLIBCXX_END_NAMESPACE_CXX11
       // _S_copy_chars is a separate template to permit specialization
       // to optimize for the common case of pointers as iterators.
       template<class _Iterator>
-        static void
+        static _GLIBCXX20_CONSTEXPR void
         _S_copy_chars(_CharT* __p, _Iterator __k1, _Iterator __k2)
         {
 	  for (; __k1 != __k2; ++__k1, (void)++__p)
 	    traits_type::assign(*__p, *__k1); // These types are off.
 	}
 
-      static void
+      static _GLIBCXX20_CONSTEXPR void
       _S_copy_chars(_CharT* __p, iterator __k1, iterator __k2) _GLIBCXX_NOEXCEPT
       { _S_copy_chars(__p, __k1.base(), __k2.base()); }
 
-      static void
+      static _GLIBCXX20_CONSTEXPR void
       _S_copy_chars(_CharT* __p, const_iterator __k1, const_iterator __k2)
       _GLIBCXX_NOEXCEPT
       { _S_copy_chars(__p, __k1.base(), __k2.base()); }
 
-      static void
+      static _GLIBCXX20_CONSTEXPR void
       _S_copy_chars(_CharT* __p, _CharT* __k1, _CharT* __k2) _GLIBCXX_NOEXCEPT
       { _M_copy(__p, __k1, __k2 - __k1); }
 
-      static void
+      static _GLIBCXX20_CONSTEXPR void
       _S_copy_chars(_CharT* __p, const _CharT* __k1, const _CharT* __k2)
       _GLIBCXX_NOEXCEPT
       { _M_copy(__p, __k1, __k2 - __k1); }
@@ -5169,7 +5169,7 @@ _GLIBCXX_END_NAMESPACE_CXX11
        *  C string @a __s.  If @a __pos is %greater than size(),
        *  out_of_range is thrown.
       */
-      size_type
+      _GLIBCXX20_CONSTEXPR size_type
       copy(_CharT* __s, size_type __n, size_type __pos = 0) const;
 
       /**
