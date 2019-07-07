@@ -113,13 +113,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static _GLIBCXX14_CONSTEXPR const char_type*
       find(const char_type* __s, std::size_t __n, const char_type& __a);
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       move(char_type* __s1, const char_type* __s2, std::size_t __n);
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       copy(char_type* __s1, const char_type* __s2, std::size_t __n);
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       assign(char_type* __s, std::size_t __n, char_type __a);
 
       static _GLIBCXX_CONSTEXPR char_type
@@ -179,7 +179,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   template<typename _CharT>
-    typename char_traits<_CharT>::char_type*
+    _GLIBCXX20_CONSTEXPR typename char_traits<_CharT>::char_type*
     char_traits<_CharT>::
     move(char_type* __s1, const char_type* __s2, std::size_t __n)
     {
@@ -190,7 +190,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   template<typename _CharT>
-    typename char_traits<_CharT>::char_type*
+    _GLIBCXX20_CONSTEXPR typename char_traits<_CharT>::char_type*
     char_traits<_CharT>::
     copy(char_type* __s1, const char_type* __s2, std::size_t __n)
     {
@@ -200,7 +200,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   template<typename _CharT>
-    typename char_traits<_CharT>::char_type*
+    _GLIBCXX20_CONSTEXPR typename char_traits<_CharT>::char_type*
     char_traits<_CharT>::
     assign(char_type* __s, std::size_t __n, char_type __a)
     {
@@ -349,7 +349,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return static_cast<const char_type*>(__builtin_memchr(__s, __a, __n));
       }
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       move(char_type* __s1, const char_type* __s2, size_t __n)
       {
 	if (__n == 0)
@@ -357,7 +357,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return static_cast<char_type*>(__builtin_memmove(__s1, __s2, __n));
       }
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       copy(char_type* __s1, const char_type* __s2, size_t __n)
       {
 	if (__n == 0)
@@ -365,7 +365,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return static_cast<char_type*>(__builtin_memcpy(__s1, __s2, __n));
       }
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       assign(char_type* __s, size_t __n, char_type __a)
       {
 	if (__n == 0)
@@ -458,7 +458,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return wmemchr(__s, __a, __n);
       }
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       move(char_type* __s1, const char_type* __s2, size_t __n)
       {
 	if (__n == 0)
@@ -466,7 +466,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return wmemmove(__s1, __s2, __n);
       }
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       copy(char_type* __s1, const char_type* __s2, size_t __n)
       {
 	if (__n == 0)
@@ -474,7 +474,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return wmemcpy(__s1, __s2, __n);
       }
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       assign(char_type* __s, size_t __n, char_type __a)
       {
 	if (__n == 0)
@@ -567,7 +567,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return static_cast<const char_type*>(__builtin_memchr(__s, __a, __n));
       }
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       move(char_type* __s1, const char_type* __s2, size_t __n)
       {
 	if (__n == 0)
@@ -575,7 +575,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return static_cast<char_type*>(__builtin_memmove(__s1, __s2, __n));
       }
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       copy(char_type* __s1, const char_type* __s2, size_t __n)
       {
 	if (__n == 0)
@@ -583,7 +583,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return static_cast<char_type*>(__builtin_memcpy(__s1, __s2, __n));
       }
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       assign(char_type* __s, size_t __n, char_type __a)
       {
 	if (__n == 0)
@@ -680,7 +680,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return 0;
       }
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       move(char_type* __s1, const char_type* __s2, size_t __n)
       {
 	if (__n == 0)
@@ -689,7 +689,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		(__builtin_memmove(__s1, __s2, __n * sizeof(char_type))));
       }
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       copy(char_type* __s1, const char_type* __s2, size_t __n)
       {
 	if (__n == 0)
@@ -698,7 +698,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		(__builtin_memcpy(__s1, __s2, __n * sizeof(char_type))));
       }
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       assign(char_type* __s, size_t __n, char_type __a)
       {
 	for (size_t __i = 0; __i < __n; ++__i)
@@ -783,7 +783,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return 0;
       }
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       move(char_type* __s1, const char_type* __s2, size_t __n)
       {
 	if (__n == 0)
@@ -792,7 +792,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		(__builtin_memmove(__s1, __s2, __n * sizeof(char_type))));
       }
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       copy(char_type* __s1, const char_type* __s2, size_t __n)
       { 
 	if (__n == 0)
@@ -801,7 +801,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		(__builtin_memcpy(__s1, __s2, __n * sizeof(char_type))));
       }
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       assign(char_type* __s, size_t __n, char_type __a)
       {
 	for (size_t __i = 0; __i < __n; ++__i)
