@@ -112,11 +112,13 @@ _GLIBCXX_BEGIN_NAMESPACE_CONTAINER
       // No explicit construct/copy/destroy for aggregate type.
 
       // DR 776.
-      _GLIBCXX20_CONSTEXPR void
+      _GLIBCXX20_CONSTEXPR
+      void
       fill(const value_type& __u)
       { std::fill_n(begin(), size(), __u); }
 
-      _GLIBCXX20_CONSTEXPR void
+      _GLIBCXX20_CONSTEXPR
+      void
       swap(array& __other)
       noexcept(_AT_Type::_Is_nothrow_swappable::value)
       { std::swap_ranges(begin(), end(), __other.begin()); }
