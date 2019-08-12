@@ -488,7 +488,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       typedef _Container          container_type;
 
       /// The only way to create this %iterator is with a container.
-      explicit
+      explicit _GLIBCXX20_CONSTEXPR
       back_insert_iterator(_Container& __x)
       : container(std::__addressof(__x)) { }
 
@@ -511,14 +511,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return *this;
       }
 #else
-      back_insert_iterator&
+      _GLIBCXX20_CONSTEXPR back_insert_iterator&
       operator=(const typename _Container::value_type& __value)
       {
 	container->push_back(__value);
 	return *this;
       }
 
-      back_insert_iterator&
+      _GLIBCXX20_CONSTEXPR back_insert_iterator&
       operator=(typename _Container::value_type&& __value)
       {
 	container->push_back(std::move(__value));
@@ -527,17 +527,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 #endif
 
       /// Simply returns *this.
-      back_insert_iterator&
+      _GLIBCXX20_CONSTEXPR back_insert_iterator&
       operator*()
       { return *this; }
 
       /// Simply returns *this.  (This %iterator does not @a move.)
-      back_insert_iterator&
+      _GLIBCXX20_CONSTEXPR back_insert_iterator&
       operator++()
       { return *this; }
 
       /// Simply returns *this.  (This %iterator does not @a move.)
-      back_insert_iterator
+      _GLIBCXX20_CONSTEXPR back_insert_iterator
       operator++(int)
       { return *this; }
     };
@@ -580,7 +580,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       typedef _Container          container_type;
 
       /// The only way to create this %iterator is with a container.
-      explicit front_insert_iterator(_Container& __x)
+      explicit _GLIBCXX20_CONSTEXPR
+      front_insert_iterator(_Container& __x)
       : container(std::__addressof(__x)) { }
 
       /**
@@ -602,14 +603,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return *this;
       }
 #else
-      front_insert_iterator&
+      _GLIBCXX20_CONSTEXPR front_insert_iterator&
       operator=(const typename _Container::value_type& __value)
       {
 	container->push_front(__value);
 	return *this;
       }
-
-      front_insert_iterator&
+      _GLIBCXX20_CONSTEXPR front_insert_iterator&
       operator=(typename _Container::value_type&& __value)
       {
 	container->push_front(std::move(__value));
@@ -618,17 +618,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 #endif
 
       /// Simply returns *this.
-      front_insert_iterator&
+      _GLIBCXX20_CONSTEXPR front_insert_iterator&
       operator*()
       { return *this; }
 
       /// Simply returns *this.  (This %iterator does not @a move.)
-      front_insert_iterator&
+      _GLIBCXX20_CONSTEXPR front_insert_iterator&
       operator++()
       { return *this; }
 
       /// Simply returns *this.  (This %iterator does not @a move.)
-      front_insert_iterator
+      _GLIBCXX20_CONSTEXPR front_insert_iterator
       operator++(int)
       { return *this; }
     };
@@ -679,6 +679,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        *  The only way to create this %iterator is with a container and an
        *  initial position (a normal %iterator into the container).
       */
+      _GLIBCXX20_CONSTEXPR
       insert_iterator(_Container& __x, typename _Container::iterator __i)
       : container(std::__addressof(__x)), iter(__i) {}
 
@@ -714,7 +715,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return *this;
       }
 #else
-      insert_iterator&
+      _GLIBCXX20_CONSTEXPR insert_iterator&
       operator=(const typename _Container::value_type& __value)
       {
 	iter = container->insert(iter, __value);
@@ -722,7 +723,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return *this;
       }
 
-      insert_iterator&
+      _GLIBCXX20_CONSTEXPR insert_iterator&
       operator=(typename _Container::value_type&& __value)
       {
 	iter = container->insert(iter, std::move(__value));
@@ -732,17 +733,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 #endif
 
       /// Simply returns *this.
-      insert_iterator&
+      _GLIBCXX20_CONSTEXPR insert_iterator&
       operator*()
       { return *this; }
 
       /// Simply returns *this.  (This %iterator does not @a move.)
-      insert_iterator&
+      _GLIBCXX20_CONSTEXPR insert_iterator&
       operator++()
       { return *this; }
 
       /// Simply returns *this.  (This %iterator does not @a move.)
-      insert_iterator&
+      _GLIBCXX20_CONSTEXPR insert_iterator&
       operator++(int)
       { return *this; }
     };

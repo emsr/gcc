@@ -312,6 +312,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
 
     protected:
+      _GLIBCXX20_CONSTEXPR
       void
       _M_swap(_Tuple_impl& __in)
       {
@@ -423,6 +424,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
 
     protected:
+      _GLIBCXX20_CONSTEXPR
       void
       _M_swap(_Tuple_impl& __in)
       {
@@ -850,8 +852,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       tuple() = default;
       // No-op allocator constructors.
       template<typename _Alloc>
+	_GLIBCXX20_CONSTEXPR
 	tuple(allocator_arg_t, const _Alloc&) noexcept { }
       template<typename _Alloc>
+	_GLIBCXX20_CONSTEXPR
 	tuple(allocator_arg_t, const _Alloc&, const tuple&) noexcept { }
     };
 
@@ -1031,11 +1035,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       template<typename _Alloc,
 	       _ImplicitDefaultCtor<is_object<_Alloc>::value, _T1, _T2> = true>
+	_GLIBCXX20_CONSTEXPR
 	tuple(allocator_arg_t __tag, const _Alloc& __a)
 	: _Inherited(__tag, __a) { }
 
       template<typename _Alloc, bool _Dummy = true,
 	       _ImplicitCtor<_Dummy, const _T1&, const _T2&> = true>
+	_GLIBCXX20_CONSTEXPR
 	tuple(allocator_arg_t __tag, const _Alloc& __a,
 	      const _T1& __a1, const _T2& __a2)
 	: _Inherited(__tag, __a, __a1, __a2) { }
@@ -1043,12 +1049,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       template<typename _Alloc, bool _Dummy = true,
 	       _ExplicitCtor<_Dummy, const _T1&, const _T2&> = false>
 	explicit
+	_GLIBCXX20_CONSTEXPR
 	tuple(allocator_arg_t __tag, const _Alloc& __a,
 	      const _T1& __a1, const _T2& __a2)
 	: _Inherited(__tag, __a, __a1, __a2) { }
 
       template<typename _Alloc, typename _U1, typename _U2,
 	       _ImplicitCtor<true, _U1, _U2> = true>
+	_GLIBCXX20_CONSTEXPR
 	tuple(allocator_arg_t __tag, const _Alloc& __a, _U1&& __a1, _U2&& __a2)
 	: _Inherited(__tag, __a, std::forward<_U1>(__a1),
 	             std::forward<_U2>(__a2)) { }
@@ -1056,21 +1064,25 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       template<typename _Alloc, typename _U1, typename _U2,
 	       _ExplicitCtor<true, _U1, _U2> = false>
 	explicit
+	_GLIBCXX20_CONSTEXPR
 	tuple(allocator_arg_t __tag, const _Alloc& __a,
 	      _U1&& __a1, _U2&& __a2)
 	: _Inherited(__tag, __a, std::forward<_U1>(__a1),
 	             std::forward<_U2>(__a2)) { }
 
       template<typename _Alloc>
+	_GLIBCXX20_CONSTEXPR
 	tuple(allocator_arg_t __tag, const _Alloc& __a, const tuple& __in)
 	: _Inherited(__tag, __a, static_cast<const _Inherited&>(__in)) { }
 
       template<typename _Alloc>
+	_GLIBCXX20_CONSTEXPR
 	tuple(allocator_arg_t __tag, const _Alloc& __a, tuple&& __in)
 	: _Inherited(__tag, __a, static_cast<_Inherited&&>(__in)) { }
 
       template<typename _Alloc, typename _U1, typename _U2,
 	       _ImplicitCtor<true, const _U1&, const _U2&> = true>
+	_GLIBCXX20_CONSTEXPR
 	tuple(allocator_arg_t __tag, const _Alloc& __a,
 	      const tuple<_U1, _U2>& __in)
 	: _Inherited(__tag, __a,
@@ -1080,6 +1092,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       template<typename _Alloc, typename _U1, typename _U2,
 	       _ExplicitCtor<true, const _U1&, const _U2&> = false>
 	explicit
+	_GLIBCXX20_CONSTEXPR
 	tuple(allocator_arg_t __tag, const _Alloc& __a,
 	      const tuple<_U1, _U2>& __in)
 	: _Inherited(__tag, __a,
@@ -1088,6 +1101,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       template<typename _Alloc, typename _U1, typename _U2,
 	       _ImplicitCtor<true, _U1, _U2> = true>
+	_GLIBCXX20_CONSTEXPR
 	tuple(allocator_arg_t __tag, const _Alloc& __a, tuple<_U1, _U2>&& __in)
 	: _Inherited(__tag, __a, static_cast<_Tuple_impl<0, _U1, _U2>&&>(__in))
 	{ }
@@ -1095,12 +1109,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       template<typename _Alloc, typename _U1, typename _U2,
 	       _ExplicitCtor<true, _U1, _U2> = false>
 	explicit
+	_GLIBCXX20_CONSTEXPR
 	tuple(allocator_arg_t __tag, const _Alloc& __a, tuple<_U1, _U2>&& __in)
 	: _Inherited(__tag, __a, static_cast<_Tuple_impl<0, _U1, _U2>&&>(__in))
 	{ }
 
       template<typename _Alloc, typename _U1, typename _U2,
 	       _ImplicitCtor<true, const _U1&, const _U2&> = true>
+	_GLIBCXX20_CONSTEXPR
 	tuple(allocator_arg_t __tag, const _Alloc& __a,
 	      const pair<_U1, _U2>& __in)
 	: _Inherited(__tag, __a, __in.first, __in.second) { }
@@ -1108,12 +1124,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       template<typename _Alloc, typename _U1, typename _U2,
 	       _ExplicitCtor<true, const _U1&, const _U2&> = false>
 	explicit
+	_GLIBCXX20_CONSTEXPR
 	tuple(allocator_arg_t __tag, const _Alloc& __a,
 	      const pair<_U1, _U2>& __in)
 	: _Inherited(__tag, __a, __in.first, __in.second) { }
 
       template<typename _Alloc, typename _U1, typename _U2,
 	       _ImplicitCtor<true, _U1, _U2> = true>
+	_GLIBCXX20_CONSTEXPR
 	tuple(allocator_arg_t __tag, const _Alloc& __a, pair<_U1, _U2>&& __in)
 	: _Inherited(__tag, __a, std::forward<_U1>(__in.first),
 		     std::forward<_U2>(__in.second)) { }
@@ -1121,10 +1139,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       template<typename _Alloc, typename _U1, typename _U2,
 	       _ExplicitCtor<true, _U1, _U2> = false>
 	explicit
+	_GLIBCXX20_CONSTEXPR
 	tuple(allocator_arg_t __tag, const _Alloc& __a, pair<_U1, _U2>&& __in)
 	: _Inherited(__tag, __a, std::forward<_U1>(__in.first),
 		     std::forward<_U2>(__in.second)) { }
 
+      // Tuple assignment.
+
+      _GLIBCXX20_CONSTEXPR
       tuple&
       operator=(typename conditional<__assignable<const _T1&, const _T2&>(),
 				     const tuple&,
@@ -1135,6 +1157,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return *this;
       }
 
+      _GLIBCXX20_CONSTEXPR
       tuple&
       operator=(typename conditional<__assignable<_T1, _T2>(),
 				     tuple&&,
@@ -1146,6 +1169,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       }
 
       template<typename _U1, typename _U2>
+	_GLIBCXX20_CONSTEXPR
 	__enable_if_t<__assignable<const _U1&, const _U2&>(), tuple&>
 	operator=(const tuple<_U1, _U2>& __in)
 	noexcept(__nothrow_assignable<const _U1&, const _U2&>())
@@ -1155,6 +1179,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
 
       template<typename _U1, typename _U2>
+	_GLIBCXX20_CONSTEXPR
 	__enable_if_t<__assignable<_U1, _U2>(), tuple&>
 	operator=(tuple<_U1, _U2>&& __in)
 	noexcept(__nothrow_assignable<_U1, _U2>())
@@ -1164,6 +1189,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
 
       template<typename _U1, typename _U2>
+	_GLIBCXX20_CONSTEXPR
 	__enable_if_t<__assignable<const _U1&, const _U2&>(), tuple&>
 	operator=(const pair<_U1, _U2>& __in)
 	noexcept(__nothrow_assignable<const _U1&, const _U2&>())
@@ -1174,6 +1200,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
 
       template<typename _U1, typename _U2>
+	_GLIBCXX20_CONSTEXPR
 	__enable_if_t<__assignable<_U1, _U2>(), tuple&>
 	operator=(pair<_U1, _U2>&& __in)
 	noexcept(__nothrow_assignable<_U1, _U2>())
