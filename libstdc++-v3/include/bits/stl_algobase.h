@@ -80,6 +80,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /*
    * A constexpr wrapper for __builtin_memmove.
    * @param __num The number of elements of type _Tp (not bytes).
+   * __memfwd?
    */
   template<bool _IsMove, typename _Tp>
     _GLIBCXX14_CONSTEXPR
@@ -103,6 +104,50 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
 #endif
 	return __builtin_memmove(__dst, __src, sizeof(_Tp) * __num);
+      return __dst;
+    }
+
+  /*
+   * A constexpr wrapper for __builtin_memmove.
+   * @param __num The number of elements of type _Tp (not bytes).
+   */
+  template<typename _Tp>
+    _GLIBCXX14_CONSTEXPR
+    inline void*
+    __memcpy(_Tp* __dst, const _Tp* __src, size_t __num)
+    {
+#ifdef __cpp_lib_is_constant_evaluated
+      if (std::is_constant_evaluated())
+	{
+	  for(; __num > 0; --__num)
+	    *__dst++ = *__src++;
+	  return __dst;
+	}
+      else
+#endif
+	return __builtin_memcpy(__dst, __src, sizeof(_Tp) * __num);
+      return __dst;
+    }
+
+  /*
+   * A constexpr wrapper for __builtin_memmove.
+   * @param __num The number of elements of type _Tp (not bytes).
+   */
+  template<typename _Tp>
+    _GLIBCXX14_CONSTEXPR
+    inline void*
+    __memset(_Tp* __dst, _Tp __a, size_t __num)
+    {
+#ifdef __cpp_lib_is_constant_evaluated
+      if (std::is_constant_evaluated())
+	{
+	  for(; __num > 0; --__num)
+	    *__dst = __a;
+	  return __dst;
+	}
+      else
+#endif
+	return __builtin_memset(__dst, __a, sizeof(_Tp) * __num);
       return __dst;
     }
 

@@ -185,7 +185,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__n == 0)
 	return __s1;
-      return static_cast<_CharT*>(__builtin_memmove(__s1, __s2,
+      return static_cast<_CharT*>(std::__memmove<true>(__s1, __s2,
 						    __n * sizeof(char_type)));
     }
 
@@ -354,7 +354,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (__n == 0)
 	  return __s1;
-	return static_cast<char_type*>(__builtin_memmove(__s1, __s2, __n));
+	return static_cast<char_type*>(std::__memmove<true>(__s1, __s2, __n));
       }
 
       static _GLIBCXX20_CONSTEXPR char_type*
@@ -362,7 +362,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (__n == 0)
 	  return __s1;
-	return static_cast<char_type*>(__builtin_memcpy(__s1, __s2, __n));
+	return static_cast<char_type*>(std::__memcpy(__s1, __s2, __n));
       }
 
       static _GLIBCXX20_CONSTEXPR char_type*
@@ -370,7 +370,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (__n == 0)
 	  return __s;
-	return static_cast<char_type*>(__builtin_memset(__s, __a, __n));
+	return static_cast<char_type*>(std::__memset(__s, __a, __n));
       }
 
       static _GLIBCXX_CONSTEXPR char_type
@@ -463,6 +463,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (__n == 0)
 	  return __s1;
+#ifdef __cpp_lib_is_constant_evaluated
+	if (std::is_constant_evaluated())
+	  return static_cast<char_type*>(std::__memmove<true>(__s1, __s2, __n));
+	else
+#endif
 	return wmemmove(__s1, __s2, __n);
       }
 
@@ -471,6 +476,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (__n == 0)
 	  return __s1;
+#ifdef __cpp_lib_is_constant_evaluated
+	if (std::is_constant_evaluated())
+	  return static_cast<char_type*>(std::__memcpy(__s1, __s2, __n));
+	else
+#endif
 	return wmemcpy(__s1, __s2, __n);
       }
 
@@ -479,6 +489,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (__n == 0)
 	  return __s;
+#ifdef __cpp_lib_is_constant_evaluated
+	if (std::is_constant_evaluated())
+	  return static_cast<char_type*>(std::__memset(__s, __a, __n));
+	else
+#endif
 	return wmemset(__s, __a, __n);
       }
 
@@ -572,7 +587,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (__n == 0)
 	  return __s1;
-	return static_cast<char_type*>(__builtin_memmove(__s1, __s2, __n));
+	return static_cast<char_type*>(std::__memmove<true>(__s1, __s2, __n));
       }
 
       static _GLIBCXX20_CONSTEXPR char_type*
@@ -580,7 +595,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (__n == 0)
 	  return __s1;
-	return static_cast<char_type*>(__builtin_memcpy(__s1, __s2, __n));
+	return static_cast<char_type*>(std::__memcpy(__s1, __s2, __n));
       }
 
       static _GLIBCXX20_CONSTEXPR char_type*
@@ -588,7 +603,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (__n == 0)
 	  return __s;
-	return static_cast<char_type*>(__builtin_memset(__s, __a, __n));
+	return static_cast<char_type*>(std::__memset(__s, __a, __n));
       }
 
       static _GLIBCXX_CONSTEXPR char_type
@@ -685,8 +700,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (__n == 0)
 	  return __s1;
-	return (static_cast<char_type*>
-		(__builtin_memmove(__s1, __s2, __n * sizeof(char_type))));
+	return static_cast<char_type*>(std::__memmove<true>(__s1, __s2, __n));
       }
 
       static _GLIBCXX20_CONSTEXPR char_type*
@@ -694,8 +708,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (__n == 0)
 	  return __s1;
-	return (static_cast<char_type*>
-		(__builtin_memcpy(__s1, __s2, __n * sizeof(char_type))));
+	return static_cast<char_type*>(std::__memcpy(__s1, __s2, __n));
       }
 
       static _GLIBCXX20_CONSTEXPR char_type*
@@ -789,7 +802,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	if (__n == 0)
 	  return __s1;
 	return (static_cast<char_type*>
-		(__builtin_memmove(__s1, __s2, __n * sizeof(char_type))));
+		(std::__memmove<true>(__s1, __s2, __n * sizeof(char_type))));
       }
 
       static _GLIBCXX20_CONSTEXPR char_type*
@@ -798,7 +811,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	if (__n == 0)
 	  return __s1;
 	return (static_cast<char_type*>
-		(__builtin_memcpy(__s1, __s2, __n * sizeof(char_type))));
+		(std::__memcpy(__s1, __s2, __n * sizeof(char_type))));
       }
 
       static _GLIBCXX20_CONSTEXPR char_type*
