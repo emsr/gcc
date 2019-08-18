@@ -56,7 +56,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       value_type	value;
 
       template<typename V2>
-        static char_type
+        static _GLIBCXX_CONSTEXPR char_type
         from(const V2& v)
         {
 	  char_type ret = { static_cast<value_type>(v) };
@@ -64,7 +64,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
 
       template<typename V2>
-        static V2
+        static _GLIBCXX_CONSTEXPR V2
         to(const char_type& c)
         {
 	  V2 ret = { static_cast<V2>(c.value) };
@@ -74,13 +74,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
   template<typename _Value, typename _Int, typename _St>
-    inline bool
+    inline _GLIBCXX_CONSTEXPR bool
     operator==(const character<_Value, _Int, _St>& lhs,
 	       const character<_Value, _Int, _St>& rhs)
     { return lhs.value == rhs.value; }
 
   template<typename _Value, typename _Int, typename _St>
-    inline bool
+    inline _GLIBCXX_CONSTEXPR bool
     operator<(const character<_Value, _Int, _St>& lhs,
 	      const character<_Value, _Int, _St>& rhs)
     { return lhs.value < rhs.value; }
@@ -102,19 +102,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       typedef fpos<state_type>				pos_type;
       typedef streamoff					off_type;
 
-      static void
+      static _GLIBCXX14_CONSTEXPR void
       assign(char_type& __c1, const char_type& __c2)
       { __c1 = __c2; }
 
-      static bool
+      static _GLIBCXX_CONSTEXPR bool
       eq(const char_type& __c1, const char_type& __c2)
       { return __c1 == __c2; }
 
-      static bool
+      static _GLIBCXX_CONSTEXPR bool
       lt(const char_type& __c1, const char_type& __c2)
       { return __c1 < __c2; }
 
-      static int
+      static _GLIBCXX14_CONSTEXPR int
       compare(const char_type* __s1, const char_type* __s2, size_t __n)
       {
 	for (size_t __i = 0; __i < __n; ++__i)
@@ -123,7 +123,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return 0;
       }
 
-      static size_t
+      static _GLIBCXX14_CONSTEXPR size_t
       length(const char_type* __s)
       {
 	const char_type* __p = __s;
@@ -132,7 +132,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return (__p - __s);
       }
 
-      static const char_type*
+      static _GLIBCXX14_CONSTEXPR const char_type*
       find(const char_type* __s, size_t __n, const char_type& __a)
       {
 	for (const char_type* __p = __s; size_t(__p - __s) < __n; ++__p)
@@ -141,7 +141,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return 0;
       }
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       move(char_type* __s1, const char_type* __s2, size_t __n)
       { 
 	if (__n == 0)
@@ -150,7 +150,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  (__builtin_memmove(__s1, __s2, __n * sizeof(char_type)));
       }
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       copy(char_type* __s1, const char_type* __s2, size_t __n)
       {
 	if (__n == 0)
@@ -159,26 +159,26 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __s1;
       }
 
-      static char_type*
+      static _GLIBCXX20_CONSTEXPR char_type*
       assign(char_type* __s, size_t __n, char_type __a)
       {
 	std::fill_n(__s, __n, __a);
         return __s;
       }
 
-      static char_type
+      static _GLIBCXX_CONSTEXPR char_type
       to_char_type(const int_type& __i)
       { return char_type::template from(__i); }
 
-      static int_type
+      static _GLIBCXX_CONSTEXPR int_type
       to_int_type(const char_type& __c)
       { return char_type::template to<int_type>(__c); }
 
-      static bool
+      static _GLIBCXX_CONSTEXPR bool
       eq_int_type(const int_type& __c1, const int_type& __c2)
       { return __c1 == __c2; }
 
-      static int_type
+      static _GLIBCXX_CONSTEXPR int_type
       eof() 
       {
 	int_type __r = { static_cast<typename __gnu_cxx::__conditional_type
@@ -187,7 +187,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __r;
       }
 
-      static int_type
+      static _GLIBCXX_CONSTEXPR int_type
       not_eof(const int_type& __c)
       { return eq_int_type(__c, eof()) ? int_type() : __c; }
     };
