@@ -477,6 +477,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     basic_string<_CharT, _Traits, _Alloc>::
     copy(_CharT* __s, size_type __n, size_type __pos) const
     {
+#ifdef __cpp_lib_is_constant_evaluated
+      if (std::is_constant_evaluated())
+	{
+	  return std::copy_n(_M_data() + __pos, __n, __s);
+	}
+#else
       _M_check(__pos, "basic_string::copy");
       __n = _M_limit(__pos, __n);
       __glibcxx_requires_string_len(__s, __n);
@@ -484,6 +490,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	_S_copy(__s, _M_data() + __pos, __n);
       // 21.3.5.7 par 3: do not append null.  (good.)
       return __n;
+#endif
     }
 
 #else  // !_GLIBCXX_USE_CXX11_ABI
