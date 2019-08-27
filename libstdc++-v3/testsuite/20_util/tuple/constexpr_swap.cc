@@ -18,28 +18,19 @@
 // with this library; see the file COPYING3.  If not see
 // <http://www.gnu.org/licenses/>.
 
-#include <utility>
+#include <tuple>
 
 constexpr bool
-test_pair()
+test_tuple()
 {
   auto ok = true;
 
-  std::pair<int, int> pi(1, 2);
-  std::pair<float, float> pf(3.4f, 5.6f);
-  pf = pi;
-  pf = std::move(pi);
-
-  using t1f_t = std::tuple<int, float, float>;
-  const t1f_t t1f(0, 3.456f, 6.789f);
-
-  using t2f_t = std::tuple<int, float>;
-  const t2f_t t2f(12, 3.142f);
-  std::pair<t1f_t, t2f_t> p1f(std::piecewise_construct, t1f, t2f);
-  p1 = p1f;
-  p1 = std::move(p1f);
+  std::tuple<int, double, double> t1(1, 3.1415, 2.7182);
+  std::tuple<int, double, double> t2(1, 4.1234, 3.3333);
+  t1.swap(t2);
+  std::swap(t1, t2);
 
   return ok;
 }
 
-static_assert(test_pair());
+static_assert(test_tuple());
