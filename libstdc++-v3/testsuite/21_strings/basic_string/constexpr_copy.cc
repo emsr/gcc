@@ -18,28 +18,26 @@
 // with this library; see the file COPYING3.  If not see
 // <http://www.gnu.org/licenses/>.
 
-#include <utility>
+#include <string>
+
+const std::string
+version = "UsefulThing Version-3.2.1";
+
+const std::wstring
+wversion = L"UsefulThing Version-3.2.1";
 
 constexpr bool
-test_pair()
+test_string()
 {
   auto ok = true;
 
-  std::pair<int, int> pi(1, 2);
-  std::pair<float, float> pf(3.4f, 5.6f);
-  pf = pi;
-  pf = std::move(pi);
+  char cas[6]{};
+  version.copy(cas, 6, 7);
 
-  using t1f_t = std::tuple<int, float, float>;
-  const t1f_t t1f(0, 3.456f, 6.789f);
-
-  using t2f_t = std::tuple<int, float>;
-  const t2f_t t2f(12, 3.142f);
-  std::pair<t1f_t, t2f_t> p1f(std::piecewise_construct, t1f, t2f);
-  p1 = p1f;
-  p1 = std::move(p1f);
+  wchar_t wcas[6]{};
+  wversion.copy(wcas, 6, 7);
 
   return ok;
 }
 
-static_assert(test_pair());
+static_assert(test_string());
