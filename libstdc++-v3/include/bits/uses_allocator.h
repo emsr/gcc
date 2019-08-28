@@ -72,7 +72,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   struct __uses_alloc0 : __uses_alloc_base
   {
-    struct _Sink { constexpr void operator=(const void*) { } } _M_a;
+    struct _Sink { void _GLIBCXX20_CONSTEXPR operator=(const void*) { } } _M_a;
   };
 
   template<typename _Alloc>
