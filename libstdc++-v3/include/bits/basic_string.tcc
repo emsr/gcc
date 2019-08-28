@@ -480,7 +480,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 #ifdef __cpp_lib_is_constant_evaluated
       if (std::is_constant_evaluated())
 	{
-	  return std::copy_n(_M_data() + __pos, __n, __s);
+	  //std::copy_n(_M_data() + __pos, __n, __s);
+	  const auto __rlen = std::min(__n, this->size() - __pos);
+	  _Traits::copy(__s, this->data() + __pos, __rlen);
+	  return __n;
 	}
 #else
       _M_check(__pos, "basic_string::copy");
