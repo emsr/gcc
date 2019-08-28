@@ -487,6 +487,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /// A nested typedef for the type of whatever container you used.
       typedef _Container          container_type;
 
+#if __cplusplus > 201703L
+      constexpr back_insert_iterator() noexcept = default;
+#endif
+
       /// The only way to create this %iterator is with a container.
       explicit _GLIBCXX20_CONSTEXPR
       back_insert_iterator(_Container& __x)
@@ -554,7 +558,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  types for you.
   */
   template<typename _Container>
-    inline back_insert_iterator<_Container>
+    inline _GLIBCXX20_CONSTEXPR back_insert_iterator<_Container>
     back_inserter(_Container& __x)
     { return back_insert_iterator<_Container>(__x); }
 
@@ -578,6 +582,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     public:
       /// A nested typedef for the type of whatever container you used.
       typedef _Container          container_type;
+
+#if __cplusplus > 201703L
+      constexpr front_insert_iterator() noexcept = default;
+#endif
 
       /// The only way to create this %iterator is with a container.
       explicit _GLIBCXX20_CONSTEXPR
@@ -645,7 +653,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  types for you.
   */
   template<typename _Container>
-    inline front_insert_iterator<_Container>
+    inline _GLIBCXX20_CONSTEXPR front_insert_iterator<_Container>
     front_inserter(_Container& __x)
     { return front_insert_iterator<_Container>(__x); }
 
@@ -674,6 +682,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     public:
       /// A nested typedef for the type of whatever container you used.
       typedef _Container          container_type;
+
+#if __cplusplus > 201703L
+      constexpr insert_iterator() = default;
+#endif
 
       /**
        *  The only way to create this %iterator is with a container and an
@@ -761,7 +773,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  types for you.
   */
   template<typename _Container, typename _Iterator>
-    inline insert_iterator<_Container>
+    inline _GLIBCXX20_CONSTEXPR insert_iterator<_Container>
     inserter(_Container& __x, _Iterator __i)
     {
       return insert_iterator<_Container>(__x,
