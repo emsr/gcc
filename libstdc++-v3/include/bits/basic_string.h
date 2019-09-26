@@ -325,7 +325,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CXX11
 
 
       // NB: _M_limit doesn't check for a bad __pos value.
-      size_type
+      _GLIBCXX20_CONSTEXPR size_type
       _M_limit(size_type __pos, size_type __off) const _GLIBCXX_NOEXCEPT
       {
 	const bool __testoff =  __off < this->size() - __pos;
@@ -333,7 +333,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CXX11
       }
 
       // True if _Rep and source do not overlap.
-      bool
+      _GLIBCXX20_CONSTEXPR bool
       _M_disjunct(const _CharT* __s) const _GLIBCXX_NOEXCEPT
       {
 	return (less<const _CharT*>()(__s, _M_data())
@@ -351,7 +351,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CXX11
 	  traits_type::copy(__d, __s, __n);
       }
 
-      static void
+      static _GLIBCXX20_CONSTEXPR void
       _S_move(_CharT* __d, const _CharT* __s, size_type __n)
       {
 	if (__n == 1)
@@ -360,7 +360,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CXX11
 	  traits_type::move(__d, __s, __n);
       }
 
-      static void
+      static _GLIBCXX20_CONSTEXPR void
       _S_assign(_CharT* __d, size_type __n, _CharT __c)
       {
 	if (__n == 1)
@@ -372,18 +372,18 @@ _GLIBCXX_BEGIN_NAMESPACE_CXX11
       // _S_copy_chars is a separate template to permit specialization
       // to optimize for the common case of pointers as iterators.
       template<class _Iterator>
-        static void
+        static _GLIBCXX20_CONSTEXPR void
         _S_copy_chars(_CharT* __p, _Iterator __k1, _Iterator __k2)
         {
 	  for (; __k1 != __k2; ++__k1, (void)++__p)
 	    traits_type::assign(*__p, *__k1); // These types are off.
 	}
 
-      static void
+      static _GLIBCXX20_CONSTEXPR void
       _S_copy_chars(_CharT* __p, iterator __k1, iterator __k2) _GLIBCXX_NOEXCEPT
       { _S_copy_chars(__p, __k1.base(), __k2.base()); }
 
-      static void
+      static _GLIBCXX20_CONSTEXPR void
       _S_copy_chars(_CharT* __p, const_iterator __k1, const_iterator __k2)
       _GLIBCXX_NOEXCEPT
       { _S_copy_chars(__p, __k1.base(), __k2.base()); }
@@ -397,7 +397,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CXX11
       _GLIBCXX_NOEXCEPT
       { _S_copy(__p, __k1, __k2 - __k1); }
 
-      static int
+      static _GLIBCXX20_CONSTEXPR int
       _S_compare(size_type __n1, size_type __n2) _GLIBCXX_NOEXCEPT
       {
 	const difference_type __d = difference_type(__n1 - __n2);
@@ -897,18 +897,18 @@ _GLIBCXX_BEGIN_NAMESPACE_CXX11
       // Capacity:
       ///  Returns the number of characters in the string, not including any
       ///  null-termination.
-      size_type
+      _GLIBCXX20_CONSTEXPR size_type
       size() const _GLIBCXX_NOEXCEPT
       { return _M_string_length; }
 
       ///  Returns the number of characters in the string, not including any
       ///  null-termination.
-      size_type
+      _GLIBCXX20_CONSTEXPR size_type
       length() const _GLIBCXX_NOEXCEPT
       { return _M_string_length; }
 
       ///  Returns the size() of the largest possible %string.
-      size_type
+      _GLIBCXX20_CONSTEXPR size_type
       max_size() const _GLIBCXX_NOEXCEPT
       { return (_Alloc_traits::max_size(_M_get_allocator()) - 1) / 2; }
 
