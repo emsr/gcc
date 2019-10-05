@@ -29,7 +29,7 @@ test_string_view()
   char casv[8]{};
   sv.copy(casv, 7, 1);
 
-  ok = ok && (casv[0] == 'e')
+  ok = ok && (casv[0] == 'e');
 
   return ok;
 }
