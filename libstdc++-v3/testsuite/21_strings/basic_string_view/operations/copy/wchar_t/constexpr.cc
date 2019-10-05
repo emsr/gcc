@@ -26,10 +26,10 @@ test_string_view()
   auto ok = true;
 
   constexpr std::wstring_view wsv = L"Hello, World!!!";
-  char cawsv[8]{};
+  wchar_t cawsv[8]{};
   wsv.copy(cawsv, 7, 1);
 
-  ok = ok && (cawsv[0] == L'e')
+  ok = ok && (cawsv[0] == L'e');
 
   return ok;
 }
