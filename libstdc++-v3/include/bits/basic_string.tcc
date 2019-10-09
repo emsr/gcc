@@ -1,4 +1,4 @@
-// Components for manipulating sequences of characters -*- C++ -*-
+	  // Components for manipulating sequences of characters -*- C++ -*-
 
 // Copyright (C) 1997-2019 Free Software Foundation, Inc.
 //
