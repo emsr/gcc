@@ -383,8 +383,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	_GLIBCXX20_CONSTEXPR
         pair(piecewise_construct_t, tuple<_Args1...>, tuple<_Args2...>);
 
-      _GLIBCXX20_CONSTEXPR
-      pair&
+      _GLIBCXX20_CONSTEXPR pair&
       operator=(typename conditional<
 		__and_<is_copy_assignable<_T1>,
 		       is_copy_assignable<_T2>>::value,
@@ -395,8 +394,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return *this;
       }
 
-      _GLIBCXX20_CONSTEXPR
-      pair&
+      _GLIBCXX20_CONSTEXPR pair&
       operator=(typename conditional<
 		__and_<is_move_assignable<_T1>,
 		       is_move_assignable<_T2>>::value,
@@ -413,7 +411,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	_GLIBCXX20_CONSTEXPR
 	typename enable_if<__and_<is_assignable<_T1&, const _U1&>,
 				  is_assignable<_T2&, const _U2&>>::value,
-			 pair&>::type
+			   pair&>::type
 	operator=(const pair<_U1, _U2>& __p)
 	{
 	  first = __p.first;
@@ -425,7 +423,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	_GLIBCXX20_CONSTEXPR
 	typename enable_if<__and_<is_assignable<_T1&, _U1&&>,
 				  is_assignable<_T2&, _U2&&>>::value,
-			 pair&>::type
+			   pair&>::type
 	operator=(pair<_U1, _U2>&& __p)
 	{
 	  first = std::forward<_U1>(__p.first);
@@ -434,8 +432,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
 
       /// Swap the first members and then the second members.
-      _GLIBCXX20_CONSTEXPR
-      void
+      _GLIBCXX20_CONSTEXPR void
       swap(pair& __p)
       noexcept(__and_<__is_nothrow_swappable<_T1>,
                       __is_nothrow_swappable<_T2>>::value)
@@ -510,7 +507,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * which has performance implications, e.g. see https://gcc.gnu.org/PR38466
   */
   template<typename _T1, typename _T2>
-    inline _GLIBCXX20_CONSTEXPR
+    _GLIBCXX20_CONSTEXPR inline
 #if __cplusplus > 201402L || !defined(__STRICT_ANSI__) // c++1z or gnu++11
     // Constrained free swap overload, see p0185r1
     typename enable_if<__and_<__is_swappable<_T1>,
