@@ -89,21 +89,6 @@ namespace std {
   template <class Iterator>
   constexpr reverse_iterator<Iterator> make_reverse_iterator(const Iterator&);
 
-  template <class Container> class back_insert_iterator;
-
-  template <class Container>
-  back_insert_iterator<Container> back_inserter(Container& x);
-
-  template <class Container> class front_insert_iterator;
-
-  template <class Container>
-  front_insert_iterator<Container> front_inserter(Container& x);
-
-  template <class Container> class insert_iterator;
-
-  template <class Container, class Iterator>
-  insert_iterator<Container> inserter(Container& x, Iterator i);
-
   template <class Iterator> class move_iterator;
 
   template <class Iterator1, class Iterator2>

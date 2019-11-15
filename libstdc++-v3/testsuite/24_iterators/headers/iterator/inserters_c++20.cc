@@ -1,7 +1,8 @@
-// { dg-do compile { target c++11 } }
-// { dg-require-normal-mode "" }
+// { dg-options "-std=gnu++2a" }
+// { dg-do compile }
+// { dg-require-normal-namespace "" }
 
-// Copyright (C) 2012-2019 Free Software Foundation, Inc.
+// Copyright (C) 2019 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -18,15 +19,22 @@
 // with this library; see the file COPYING3.  If not see
 // <http://www.gnu.org/licenses/>.
 
-#include <array>
+#include <iterator>
 
-std::array<int, 1> a{};
-const std::array<int, 1> ca{};
+namespace std {
 
-int n1 = std::get<1>(a);
-int n2 = std::get<1>(std::move(a));
-int n3 = std::get<1>(ca);
+  template <class Container> class back_insert_iterator;
 
-// { dg-error "static assertion failed" "" { target *-*-* } 318 }
-// { dg-error "static assertion failed" "" { target *-*-* } 327 }
-// { dg-error "static assertion failed" "" { target *-*-* } 335 }
+  template <class Container>
+  constexpr back_insert_iterator<Container> back_inserter(Container& x);
+
+  template <class Container> class front_insert_iterator;
+
+  template <class Container>
+  constexpr front_insert_iterator<Container> front_inserter(Container& x);
+
+  template <class Container> class insert_iterator;
+
+  template <class Container, class Iterator>
+  constexpr insert_iterator<Container> inserter(Container& x, Iterator i);
+}

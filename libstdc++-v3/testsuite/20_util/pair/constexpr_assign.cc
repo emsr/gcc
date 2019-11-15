@@ -36,7 +36,7 @@ test_pair()
   using t2f_t = std::tuple<int, float>;
   const t2f_t t2f(12, 3.142f);
   std::pair<t1f_t, t2f_t> p1f(std::piecewise_construct, t1f, t2f);
-  p1 = p1f;
+  auto p1 = p1f;
   p1 = std::move(p1f);
 
   return ok;

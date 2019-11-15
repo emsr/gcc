@@ -1,7 +1,7 @@
-// { dg-do compile { target c++11 } }
-// { dg-require-normal-mode "" }
-
-// Copyright (C) 2012-2019 Free Software Foundation, Inc.
+// { dg-options "-std=gnu++2a" }
+// { dg-do compile { target c++2a } }
+//
+// Copyright (C) 2019 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -18,15 +18,25 @@
 // with this library; see the file COPYING3.  If not see
 // <http://www.gnu.org/licenses/>.
 
-#include <array>
+#include <string>
 
-std::array<int, 1> a{};
-const std::array<int, 1> ca{};
+constexpr bool
+test()
+{
+  auto ok = true;
 
-int n1 = std::get<1>(a);
-int n2 = std::get<1>(std::move(a));
-int n3 = std::get<1>(ca);
+  char casv[8]{"ello, W"};
 
-// { dg-error "static assertion failed" "" { target *-*-* } 318 }
-// { dg-error "static assertion failed" "" { target *-*-* } 327 }
-// { dg-error "static assertion failed" "" { target *-*-* } 335 }
+  char das[8]{};
+  std::char_traits<char>::move(das, casv, 7);
+  std::char_traits<char>::copy(das, casv, 7);
+  std::char_traits<char>::assign(das, 7, 'x');
+
+  return ok;
+}
+
+int
+main()
+{
+  static_assert(test());
+}

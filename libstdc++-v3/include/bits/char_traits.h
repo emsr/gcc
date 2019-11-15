@@ -185,8 +185,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__n == 0)
 	return __s1;
-      return static_cast<_CharT*>(std::__memmove<true>(__s1, __s2,
-						    __n * sizeof(char_type)));
+      return static_cast<_CharT*>(std::__memmove<true>(__s1, __s2, __n));
     }
 
   template<typename _CharT>
@@ -801,8 +800,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (__n == 0)
 	  return __s1;
-	return (static_cast<char_type*>
-		(std::__memmove<true>(__s1, __s2, __n * sizeof(char_type))));
+	return (static_cast<char_type*>(std::__memmove<true>(__s1, __s2, __n)));
       }
 
       static _GLIBCXX20_CONSTEXPR char_type*
@@ -810,8 +808,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       { 
 	if (__n == 0)
 	  return __s1;
-	return (static_cast<char_type*>
-		(std::__memcpy(__s1, __s2, __n * sizeof(char_type))));
+	return (static_cast<char_type*>(std::__memcpy(__s1, __s2, __n)));
       }
 
       static _GLIBCXX20_CONSTEXPR char_type*
